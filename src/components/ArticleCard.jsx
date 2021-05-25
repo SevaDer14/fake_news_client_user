@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Rating, Label, Icon } from 'semantic-ui-react';
 import { setRating } from '../modules/Articles';
 import { useSelector } from 'react-redux';
+import _ from 'lodash'
+
 
 const ArticleCard = ({ article, index }) => {
   const { subscriber } = useSelector((state) => state);
@@ -41,7 +43,7 @@ const ArticleCard = ({ article, index }) => {
             <div>
               <Rating
                 data-cy='rating'
-                defaultRating={setRating(article.rating)}
+                defaultRating={setRating(_.round(article.rating))}
                 maxRating={5}
                 disabled
                 icon='star'

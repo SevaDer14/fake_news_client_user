@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from 'semantic-ui-react';
 import { setRating } from '../../modules/Articles';
-
+import _ from 'lodash'
 const BreakingNews = ({ firstArticle: article }) => {
   if (article) {
     return (
@@ -23,7 +23,7 @@ const BreakingNews = ({ firstArticle: article }) => {
           <p data-cy='breaking-teaser'>{article.teaser}</p>
           <Rating
             data-cy='breaking-rating'
-            defaultRating={setRating(article.rating)}
+            defaultRating={setRating(_.round(article.rating))}
             maxRating={5}
             disabled
             icon='star'

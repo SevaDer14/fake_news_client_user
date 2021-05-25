@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import Articles, { setRating } from '../modules/Articles';
 import { Popup, Rating } from 'semantic-ui-react';
+import _ from 'lodash'
 
 const Article = () => {
   const { article, successfulRating, subscriber } = useSelector(
@@ -49,7 +50,7 @@ const Article = () => {
               <Rating
                 onRate={articleRating}
                 data-cy='article-rating-button'
-                defaultRating={setRating(article.rating)}
+                defaultRating={setRating(_.round(article.rating))}
                 maxRating={5}
                 icon='star'
                 size='tiny'
@@ -58,7 +59,7 @@ const Article = () => {
           />
           {article.rating && (
             <span data-cy='article-rating' style={{ fontSize: '1rem' }}>
-              {` ${article.rating}`}
+              {` ${_.round(article.rating, 1)}`}
             </span>
           )}
 
